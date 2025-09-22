@@ -19,9 +19,9 @@ func main() {
 }
 
 func merge(nums1 []int, m int, nums2 []int, n int) {
-	nums1idx := m - 1     // Final do array nums1
-	nums2idx := n - 1     // Final do array nums2
-	totalidx := m + n - 1 // Final do array total "nums1"
+	nums1idx := m - 1
+	nums2idx := n - 1
+	totalidx := m + n - 1
 
 	for nums2idx >= 0 {
 		if nums1idx >= 0 && nums1[nums1idx] > nums2[nums2idx] {
@@ -118,9 +118,9 @@ func rotate(nums []int, k int) {
 	l := len(nums)
 	k = k % l
 
-	reverseRotate(nums, 0, l-1) //Inverto ela inteira
-	reverseRotate(nums, 0, k-1) //Inverto do primeiro ao k
-	reverseRotate(nums, k, l-1) //Inverto do k ao restante
+	reverseRotate(nums, 0, l-1)
+	reverseRotate(nums, 0, k-1)
+	reverseRotate(nums, k, l-1)
 }
 
 func reverseRotate(list []int, start int, end int) {
@@ -150,7 +150,6 @@ func translateHexToString(hexValue string) {
 		fmt.Println("Null")
 	}
 
-	// Converte os bytes para uma string ASCII
 	asciiString := string(bytes)
 
 	fmt.Println("Hexadecimal: \n", hexValue)
@@ -158,10 +157,8 @@ func translateHexToString(hexValue string) {
 }
 
 func translateStringToHex(stringValue string) {
-	// Converte a string ASCII para bytes
 	bytes := []byte(stringValue)
 
-	// Codifica os bytes para uma string hexadecimal
 	hexString := hex.EncodeToString(bytes)
 
 	fmt.Printf("ASCII: %s\n", stringValue)
@@ -213,12 +210,6 @@ func canJump(nums []int) bool {
 }
 
 func jump(nums []int) int {
-	/*
-		[2,3,1,1,4]
-		 j = 2
-		 i = 0
-		 jumpCount = 1
-	*/
 	jumpCount, menorPos, maiorPos := 0, 0, 0
 
 	for maiorPos < len(nums)-1 {
@@ -236,55 +227,7 @@ func jump(nums []int) int {
 	return jumpCount
 }
 
-// func hIndex(citations []int) int {
-
-// }
-
 func numIslands(grid [][]byte) int {
-	/*
-		Example 2:
-		Input: grid = [
-			["1","1","0","0","0"],
-			["1","1","0","0","0"],
-			["0","0","1","0","0"],
-			["0","0","0","1","1"]
-		]
-		Output: 3
-		Constraints:
-		m == grid.length
-		n == grid[i].length
-		1 <= m, n <= 300
-		grid[i][j] is '0' or '1'.
-
-			  0   1   2   3    4  x
-		0	["1","1","0","0","0"],
-		1	["1","1","0","0","0"],
-		2	["0","0","1","0","0"],
-		3	["0","0","0","1","1"]
-		y
-
-			  0   1   2   3    4  x
-		0	["X","X","0","0","0"],
-		1	["X","X","0","0","0"],
-		2	["0","0","1","0","0"],
-		3	["0","0","0","1","1"]
-		y
-
-			  0   1   2   3    4  x
-		0	["X","X","0","0","0"],
-		1	["X","X","0","0","0"],
-		2	["0","0","X","0","0"],
-		3	["0","0","0","1","1"]
-		y
-
-		     0   1   2   3    4  x
-		0   ["X","X","0","0","0"],
-		1	["X","X","0","0","0"],
-		2	["0","0","X","0","0"],
-		3	["0","0","0","X","X"]
-		y
-	*/
-
 	isles := 0
 	sizeX := len(grid[0])
 	sizeY := len(grid)
