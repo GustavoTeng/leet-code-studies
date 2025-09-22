@@ -237,7 +237,7 @@ func numIslands(grid [][]byte) int {
 		for x := 0; x < sizeX; x++ {
 			if grid[y][x] == 1 && !backTrack[fmt.Sprintf(`%d,%d`, y, x)] {
 				isles++
-				dfs(x, y, backTrack, grid)
+				dfsNumIslands(x, y, backTrack, grid)
 			}
 		}
 	}
@@ -245,13 +245,22 @@ func numIslands(grid [][]byte) int {
 	return isles
 }
 
-func dfs(x int, y int, backTrack map[string]bool, grid [][]byte) {
+func dfsNumIslands(x int, y int, backTrack map[string]bool, grid [][]byte) {
 	if x < 0 || x >= len(grid[0]) || y < 0 || y >= len(grid) || grid[y][x] == 0 || backTrack[fmt.Sprintf(`%d,%d`, y, x)] {
 		return
 	}
 	backTrack[fmt.Sprintf("%d,%d", y, x)] = true //Put the actual item into a backTracking variable
-	dfs(x+1, y, backTrack, grid)                 //Right item
-	dfs(x, y+1, backTrack, grid)                 //Down item
-	dfs(x-1, y, backTrack, grid)                 //Left item
-	dfs(x, y-1, backTrack, grid)                 //Up item
+	dfsNumIslands(x+1, y, backTrack, grid)       //Right item
+	dfsNumIslands(x, y+1, backTrack, grid)       //Down item
+	dfsNumIslands(x-1, y, backTrack, grid)       //Left item
+	dfsNumIslands(x, y-1, backTrack, grid)       //Up item
+}
+
+func findCircleNum(isConnected [][]int) int {
+	p := 0
+	return p
+}
+
+func findCircleNumDFS(isConnected [][]int) {
+
 }
