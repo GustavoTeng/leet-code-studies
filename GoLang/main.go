@@ -7,13 +7,9 @@ import (
 
 func main() {
 	//param1 := []int{2, 3, 1, 1, 4}
-	grid := [][]byte{
-		{1, 1, 0, 0, 0},
-		{1, 1, 0, 0, 0},
-		{0, 0, 1, 0, 0},
-		{0, 0, 0, 1, 1}}
+	grid := [][]int{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}
 
-	retorno := numIslands(grid)
+	retorno := findCircleNum(grid)
 
 	fmt.Println(retorno)
 }
@@ -258,9 +254,27 @@ func dfsNumIslands(x int, y int, backTrack map[string]bool, grid [][]byte) {
 
 func findCircleNum(isConnected [][]int) int {
 	p := 0
+	cities := len(isConnected)
+	backTrack := map[int]bool{}
+
+	for y := 0; y < cities; y++ {
+		for x := 0; x < cities; x++ {
+			if !backTrack[y] {
+				findCircleNumDFS(isConnected, backTrack, y)
+				p++
+			}
+		}
+	}
+
 	return p
 }
 
-func findCircleNumDFS(isConnected [][]int) {
-
+func findCircleNumDFS(isConnected [][]int, backTrack map[int]bool, x int) {
+	backTrack[x] = true
+	for i := 0; i < len(isConnected); i++ {
+		if isConnected[x][i] == 0 || backTrack[i] {
+			continue
+		}
+		findCircleNumDFS(isConnected, backTrack, i)
+	}
 }
